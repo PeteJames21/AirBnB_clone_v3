@@ -19,6 +19,7 @@ classes = {"users": "User", "places": "Place", "states": "State",
 def status():
     ''' routes to status page '''
     return jsonify({'status': 'OK'})
+<<<<<<< HEAD
 
 
 @app_views.route('/stats', methods=['GET'])
@@ -28,3 +29,5 @@ def count():
     for cls in classes:
         count_dict[cls] = storage.count(classes[cls])
     return jsonify(count_dict)
+=======
+>>>>>>> 25c08795b2e2107660250cf47a01be283619ac05
