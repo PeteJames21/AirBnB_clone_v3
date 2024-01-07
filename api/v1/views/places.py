@@ -78,7 +78,7 @@ def put_place(place_id):
         abort(400, "Not a JSON")
 
     for k, v in body_request.items():
-        if k not in ['id', 'user_id', 'city_at',
+        if k not in ['id', 'user_id', 'city_id',
                      'created_at', 'updated_at']:
             setattr(place, k, v)
 
