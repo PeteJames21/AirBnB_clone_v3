@@ -6,19 +6,19 @@ from api.v1.views import app_views
 from os import getenv
 
 app = Flask(__name__)
-app.register_blueprint(app_views)
 app.url_map.strict_slashes = False
+app.register_blueprint(app_views)
 
 
 @app.teardown_appcontext
 def teardown_session(exception):
-    """ Closes storage session """
+    """Closes storage session after every request has been fulfilled."""
     storage.close()
 
 
 @app.errorhandler(404)
 def not_found(error):
-    ''' handles 404 error and gives json formatted response '''
+    """Handle 404 error and give json formatted respons"""
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
