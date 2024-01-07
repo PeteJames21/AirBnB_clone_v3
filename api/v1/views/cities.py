@@ -24,9 +24,10 @@ def cities(state_id):
     if request.method == "POST":
         if not request.json:
             abort(400, "Not a JSON")
-        if "name" not in request.json:
+        json_dict = request.get_json()
+        if "name" not in json_dict.keys():
             abort(400, "Missing name")
-        new_city = City(**request.get_json())
+        new_city = City(**json_dict)
         new_city.state_id = state.id
         new_city.save()
         return jsonify(new_city.to_dict()), 201
