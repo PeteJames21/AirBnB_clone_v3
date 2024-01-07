@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!!/usr/bin/python3
 """
 Views for Amenities for RESTful API actions
 """
@@ -17,7 +17,7 @@ def list_amenities():
     return jsonify(list_amenities)
 
 
-app_views.route('/amenities/<amenity_id>', methods=['GET'])
+@app_views.route('/amenities/<amenity_id>', methods=['GET'])
 def amenity_get(amenity_id):
     """ retrieves Amenity object  """
     amenity = storage.get("Amenity", amenity_id)
