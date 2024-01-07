@@ -2,7 +2,6 @@
 """
 Defines the /states endpoint
 """
-from models import state
 from models import storage
 from models.state import State
 from api.v1.views import app_views
