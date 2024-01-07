@@ -52,7 +52,7 @@ def cities2(city_id):
         # Update a city
         if not request.json:
             abort(400, "Not a JSON")
-        for key, value in request.json.items():
+        for key, value in request.get_json().items():
             if key not in ["id", "created_at", "updated_at", "state_id"]:
                 setattr(city, key, value)
         city.save()
