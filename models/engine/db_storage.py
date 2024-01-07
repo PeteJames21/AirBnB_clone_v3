@@ -77,6 +77,8 @@ class DBStorage:
 
     def get(self, cls, id):
         """Get an instance of a specific class with the given ID"""
+        if type(cls) is str:
+            cls = classes[cls]
         return self.__session.query(cls).filter(cls.id == id).first()
 
     def count(self, cls=None):
