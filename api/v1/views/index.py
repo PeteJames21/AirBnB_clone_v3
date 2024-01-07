@@ -27,4 +27,4 @@ def count():
     count_dict = {}
     for cls in classes:
         count_dict[cls] = storage.count(classes[cls])
-    return jsonify(count)
+    return jsonify(count_dict)
