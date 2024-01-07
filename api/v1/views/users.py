@@ -32,7 +32,7 @@ def users(user_id=""):
         # Update an existing user.
         if not request.json:
             abort(400, "Not a JSON")
-        for key, value in request.json.items():
+        for key, value in request.get_json().items():
             if key not in ["id", "created_at", "updated_at", "email"]:
                 setattr(user, key, value)
         user.save()
@@ -44,10 +44,12 @@ def users(user_id=""):
         return jsonify({})
 
     if request.method == 'POST':
-        if not request.json:
-            abort(400, "Not a JSON")
-        if "name" not in request.json:
-            abort(400, 'Missing name')
-        new_user = User(**request.get_json())
+        user_dict = request.get_json()
+        if 'email' not in user_dict.keys():
+            abort(400, "Missing email")
+        if 'password' not in user_dict.keys():
+            abort(400, "Missing password")
+
+        new_user = User(**user_dict)
         new_user.save()
         return jsonify(new_user.to_dict()), 201
