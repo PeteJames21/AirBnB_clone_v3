@@ -8,6 +8,7 @@ from api.v1.views import app_views
 from models import storage
 from models.user import User
 
+
 @app_views.route('/users', methods=['GET', 'POST'])
 @app_views.route('/users/<user_id>', methods=['GET', 'PUT', 'DELETE'])
 def users(user_id=""):
