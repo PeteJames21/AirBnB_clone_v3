@@ -13,6 +13,7 @@ from models.user import User
 @app_views.route('/users/<user_id>', methods=['GET', 'PUT', 'DELETE'])
 def all_users(user_id=""):
     """Defines endpoints for dealing with User objects."""
+    user = None
     if user_id:
         # If provided, user_id must point to an existing user
         user = storage.get(User, user_id)
