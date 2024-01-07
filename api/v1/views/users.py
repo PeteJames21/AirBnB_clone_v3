@@ -11,7 +11,7 @@ from models.user import User
 
 @app_views.route('/users', methods=['GET', 'POST'])
 @app_views.route('/users/<user_id>', methods=['GET', 'PUT', 'DELETE'])
-def users(user_id=""):
+def all_users(user_id=""):
     """Defines endpoints for dealing with User objects."""
     if user_id:
         # If provided, user_id must point to an existing user
