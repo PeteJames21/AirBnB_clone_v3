@@ -22,4 +22,4 @@ def count():
     count_dict = {}
     for cls in classes:
         count_dict[cls] = storage.count(classes[cls])
-    return make_response(count_dict)
+    return jsonify(count_dict)
