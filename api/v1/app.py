@@ -7,7 +7,7 @@ from flask_cors import CORS
 from os import getenv
 
 app = Flask(__name__)
-cors = CORS(app, resources={"/api/*": {"origins": "0.0.0.0"}})
+cors = CORS(app, resources={"/*": {"origins": "0.0.0.0"}})
 app.url_map.strict_slashes = False
 app.register_blueprint(app_views)
 
