@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-'''Creates a blueprint and runs the Flask app'''
+'''
+This module creates a Flask app and defines its
+configurations, including
+error handling and teardown functions.
+'''
 from flask import Flask, make_response, jsonify
 from models import storage
 from api.v1.views import app_views

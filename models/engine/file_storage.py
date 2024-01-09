@@ -70,34 +70,24 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
-        """Get an instance of a specific class with the given ID"""
-        if type(cls) is type:
-            cls_name = cls.__name__
-        elif type(cls) is str:
-            cls_name = cls
-        else:
-            raise TypeError("'cls' parameter must be a class or str instance")
-
-        key = f"{cls_name}.{id}"
-        return self.__objects.get(key)
+        """
+        Returns the object based on the class name and its ID, or None if not
+        found
+        """
+        key = "{}.{}".format(cls, id)
+        if key in self.__objects.keys():
+            return self.__objects[key]
+        return None
 
     def count(self, cls=None):
         """
-        Return the number of objects of a specific class.
-
-        If `cls` is None, return a count of all objects.
+        Returns the number of objects in storage matching the given class name.
+        If no name is passed, returns the count of all objects in storage.
         """
-        if not cls:
-            return len(self.__objects.keys())
-
-        if type(cls) is str:
-            cls = classes.get(cls)
-            if cls is None:
-                return 0
-
-        count = 0
-        for obj in self.__objects.values():
-            if type(obj) is cls:
-                count += 1
-
-        return count
+        if cls:
+            counter = 0
+            for obj in self.__objects.values():
+                if obj.__class__.__name__ == cls:
+                    counter += 1
+            return counter
+        return len(self.__objects)
